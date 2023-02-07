@@ -890,3 +890,19 @@ Completed 422 Unprocessable Entity in 28ms (ActiveRecord: 6.6ms)
 ActiveRecord::RecordInvalid - Validation failed: Artwork A user cannot have a single Artwork shared with them more than once:
   app/controllers/artwork_shares_controller.rb:4:in `create'
 
+Started GET "/users/6/artworks" for ::1 at 2023-02-07 16:50:18 -0500
+Processing by ArtworksController#index as */*
+  Parameters: {"artwork"=>{"artist_id"=>"7"}, "user_id"=>"6"}
+  [1m[36mArtwork Load (3.0ms)[0m  [1m[34mSELECT DISTINCT "artworks".* FROM "artworks" LEFT OUTER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" WHERE ((artworks.artist_id = '6') OR (artwork_shares.viewer_id = '6'))[0m
+  ↳ app/controllers/artworks_controller.rb:4
+Completed 200 OK in 40ms (Views: 28.8ms | ActiveRecord: 7.2ms)
+
+
+Started GET "/users/7/artworks" for ::1 at 2023-02-07 16:50:26 -0500
+Processing by ArtworksController#index as */*
+  Parameters: {"artwork"=>{"artist_id"=>"7"}, "user_id"=>"7"}
+  [1m[36mArtwork Load (0.3ms)[0m  [1m[34mSELECT DISTINCT "artworks".* FROM "artworks" LEFT OUTER JOIN "artwork_shares" ON "artwork_shares"."artwork_id" = "artworks"."id" WHERE ((artworks.artist_id = '7') OR (artwork_shares.viewer_id = '7'))[0m
+  ↳ app/controllers/artworks_controller.rb:4
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.3ms)
+
+
