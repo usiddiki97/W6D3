@@ -4,38 +4,38 @@ class ArtworksController < ApplicationController
     end
 
     def show
-        user = Artwork.find(params[:id])
-        if user
-            render json: user
+        artwork = Artwork.find(params[:id])
+        if artwork
+            render json: artwork
         else
-            render json: user.errors.full_messages, status: :unprocessable_entity
+            render json: artwork.errors.full_messages, status: :unprocessable_entity
         end
     end
 
     def create
-        user = Artwork.new(artwork_params)
-        if user.save!
-            render json: user
+        artwork = Artwork.new(artwork_params)
+        if artwork.save!
+            render json: artwork
         else
-            render json: user.errors.full_messages, status: :unprocessable_entity
+            render json: artwork.errors.full_messages, status: :unprocessable_entity
         end
     end
 
     def update
-        user = Artwork.find(params[:id])
-        if user.update(artwork_params)
-            render json: user
+        artwork = Artwork.find(params[:id])
+        if artwork.update(artwork_params)
+            render json: artwork
         else
-            render json: user.errors.full_messages, status: :unprocessable_entity
+            render json: artwork.errors.full_messages, status: :unprocessable_entity
         end
     end
 
     def destroy
-        user = Artwork.find(params[:id])
-        if user.destroy
-            render json: user
+        artwork = Artwork.find(params[:id])
+        if artwork.destroy
+            render json: artwork
         else
-            render json: user.errors.full_messages, status: :unprocessable_entity
+            render json: artwork.errors.full_messages, status: :unprocessable_entity
         end
     end
 
